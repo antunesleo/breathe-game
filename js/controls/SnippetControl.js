@@ -5,15 +5,19 @@ class SnippetControl {
     this._currentSnippet = null;
   }
 
-  getInitialSnippet() {
+  startFirstSnippet() {
     this._currentSnippet = this._snippetRepository.get(1);
+  }
+
+  chooseOption(optionKey) {
+    let option = this._currentSnippet.chooseOption(optionKey);
+    this._snippetRepository.save(this._currentSnippet);
+    this._currentSnippet = this._snippetRepository.get(option.nextSnippetId);
     return this._currentSnippet;
   }
 
-  chooseOption(optionId) {
-    let option = this._currentSnippet.chooseOption(optionId);
-    this._snippetRepository.save(this._currentSnippet);
-    return this._snippetRepository.get(option.nextSnippetId);
+  get snippet() {
+    return this._currentSnippet;
   }
 
 }

@@ -17,8 +17,8 @@ class Snippet {
     return this._options;
   }
 
-  chooseOption(optionId) {
-    let option = this._options.find(option => option.id === optionId);
+  chooseOption(optionKey) {
+    let option = this._options.find(option => option.key === optionKey);
     if (option === undefined) {
       throw new Error(`Option ${optionId} not found.`);
     }
