@@ -19,6 +19,7 @@ function preload () {}
 
 function create () {
   terminal = new Terminal(this.time, this.add, snippetControl);
+  terminal.start();
 }
 
 function update() {}

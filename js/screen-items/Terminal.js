@@ -29,8 +29,10 @@ class Terminal {
     this._phaserAdd = phaserAdd;
 
     this._snippetControl = snippetControl;
-    this._snippetControl.startFirstSnippet();
+  }
 
+  start() {
+    this._snippetControl.startFirstSnippet();
     this._renderSnippet();
   }
 
