@@ -9,6 +9,10 @@ const config = {
     preload: preload,
     create: create,
     update: update
+  },
+  scale: {
+    parent: 'game',
+    autoCenter: Phaser.Scale.CENTER_BOTH
   }
 };
 
