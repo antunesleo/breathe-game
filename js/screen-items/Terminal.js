@@ -1,12 +1,6 @@
 class Terminal {
 
   constructor(phaserTime, phaserAdd, snippetControl) {
-    this._phaserTime = phaserTime;
-    this._phaserAdd = phaserAdd;
-
-    this._snippetControl = snippetControl;
-    this._snippetControl.startFirstSnippet();
-
     this._textStyle = {
       font: "19px clacon",
       fill: "#19de65",
@@ -23,14 +17,40 @@ class Terminal {
       padding: 5
     };
 
-    this._optionTextHeight = 460;
-    this._currentLine = 0;
-    this._currentWord = 0;
+    this._optionTextHeight = null;
+    this._currentLine = null;
+    this._currentWord = null;
 
+    this._currentText = null;
+    this._paragraphsTexts = [];
+    this._optionsTexts = [];
+
+    this._phaserTime = phaserTime;
+    this._phaserAdd = phaserAdd;
+
+    this._snippetControl = snippetControl;
+    this._snippetControl.startFirstSnippet();
+
+    this._renderSnippet();
+  }
+
+  _cleanSnippet() {
+    this._paragraphsTexts.forEach((paragraphText) => {
+      paragraphText.destroy();
+    });
+    this._optionsTexts.forEach((optionText) => {
+      optionText.destroy();
+    });
     this._currentText = this._phaserAdd.text(32, 32, '', this._textStyle);
     this._paragraphsTexts = [this._currentText];
     this._optionsTexts = [];
+    this._optionTextHeight = 460;
+    this._currentLine = 0;
+    this._currentWord = 0;
+  }
 
+  _renderSnippet() {
+    this._cleanSnippet();
     this._displayTextWordByWord();
   }
 
@@ -51,7 +71,7 @@ class Terminal {
       this._currentWord = 0;
 
       this._phaserTime.addEvent({
-        delay: 120,
+        delay: 30,
         callback: this._displayTextWordByWord,
         args: [lines],
         callbackScope: this,
@@ -66,7 +86,7 @@ class Terminal {
     this._currentWord++;
 
     this._phaserTime.addEvent({
-      delay: 40,
+      delay: 10,
       callback: this._displayTextWordByWord,
       args: [lines],
       callbackScope: this,
@@ -78,29 +98,15 @@ class Terminal {
     this._snippetControl.snippet.options.forEach((option) => {
       let optionButton = this._phaserAdd.text(32, this._optionTextHeight, option.text, this._optionStyle);
       optionButton.setInteractive();
-      optionButton.on('pointerdown', () => {
-        this._clean();
-        this._snippetControl.chooseOption(option.key);
-        this._displayTextWordByWord();
-      });
+      optionButton.on('pointerdown', () => this._handleOptionChoose(option));
       this._optionsTexts.push(optionButton);
       this._optionTextHeight += 40;
     });
   }
 
-  _clean() {
-    this._paragraphsTexts.forEach((paragraphText) => {
-      paragraphText.destroy();
-    });
-    this._optionsTexts.forEach((optionText) => {
-      optionText.destroy();
-    });
-    this._currentText = this._phaserAdd.text(32, 32, '', this._textStyle);
-    this._paragraphsTexts = [this._currentText];
-    this._optionsTexts = [];
-    this._optionTextHeight = 460;
-    this._currentLine = 0;
-    this._currentWord = 0;
+  _handleOptionChoose(option) {
+    this._snippetControl.chooseOption(option.key);
+    this._renderSnippet();
   }
 
 }
