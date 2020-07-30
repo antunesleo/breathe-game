@@ -14,7 +14,7 @@ class SnippetRepository {
         options: [
           {
             key: 'a',
-            text: 'Próximo',
+            text: 'Subir Escadas',
             nextSnippetId: 2
           }
         ]
@@ -66,10 +66,75 @@ class SnippetRepository {
         options: [
           {
             key: 'a',
+            text: 'Ir para sala à esquerda',
+            nextSnippetId: 8
+          },
+          {
+            key: 'a',
             text: 'Abrir maleta.',
-            nextSnippetId: 5
+            nextSnippetId: 6
           },
         ]
+      },
+      {
+        id: 6,
+        paragraphs: [
+          'Eles abrem a grande maleta de aparência militar, no interior dela apenas um dispositivo parecido com um rádio, de design muito mais robusto.',
+          ' - Puta que pariu, não posso acreditar nisso, nenhuma ração! nenhuma arma! Nada de munição, só essas bugigangas! Eu falei que isso era tempo perdido. - Reclama o homem',
+          ' -  Shiu tio, a gente precisa pelo menos tentar. E quer saber? Vou levar essa bugiganga comigo, como souvenir.',
+          ' - Além de uma papelaria a gente poderia abrir um ferro velho, com o tanto de coisas que você acumula. Agora vamo dar o fora daqui.'
+        ],
+        options: [
+          {
+            key: 'a',
+            text: 'Ir para a sala à esquerda',
+            nextSnippetId: 7
+          },
+          {
+            key: 'b',
+            text: 'Sair do edifício',
+            nextSnippetId: 8
+          },
+        ]
+      },
+      {
+        id: 7,
+        paragraphs: [
+          ' - Nós já pegamos o que precisávamos pegar, então vamo embora.',
+          ' - Vamo! Diz Júlia'
+        ],
+        options: [
+          {
+            key: 'a',
+            text: 'Sair do edifício',
+            nextSnippetId: 9
+          },
+        ]
+      },
+      {
+        id: 8,
+        paragraphs: [
+          ' - O que a gente veio procurar ta na nossa frente, esquece a outra sala. Diz Júlia'
+        ],
+        options: [
+          {
+            key: 'a',
+            text: 'Abrir Maleta',
+            nextSnippetId: 6
+          },
+        ]
+      },
+      {
+        id: 9,
+        paragraphs: [
+          'O centro comercial fica em uma grande avenida tomada por centenas de carros abandonados, a vegetação já invade as calçadas, carros e boa parte das ruas. Enquanto Júlia e seu tio seguem para o acampamento, as marcas da Guerra Civil Mundial dão cor ao verde do mato e o cinza dos prédios.',
+          ' - Olha que bonito o grafite daquele escudo de caveira de um leão!',
+          'O homem olha para uma parede não muito longe e vê o grande escudo negro com a cabeça de um belo leão dourado, sendo o lado direito apenas o crânio do felino.',
+          ' - Esses eram os libertadores, eles tinham esse escudo para representar que a os do topo da  elite terminariam mortos. Eles não duraram muito tempo.',
+          ' - Puts, mas eles tinham bons artistas. Será que sobrou algum ainda?',
+          ' - Pode ser que sim. Quando os grupos perdiam força acabavam se desmanchando e  quem sobrava acabava indo para outro grupo. '
+        ],
+        options: []
       }
     ];
   }
